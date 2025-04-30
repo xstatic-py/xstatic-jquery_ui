@@ -1,10 +1,13 @@
-from xstatic.pkg import jquery_ui as xs
+import os, sys
+setup_dir = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(setup_dir, "xstatic"))
+from pkg import jquery_ui as xs
 
 # The README.txt file should be written in reST so that PyPI can use
 # it to generate your project's PyPI page. 
 long_description = open('README.txt').read()
 
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
 
 setup(
     name=xs.PACKAGE_NAME,
@@ -18,9 +21,8 @@ setup(
     license=xs.LICENSE,
     url=xs.HOMEPAGE,
     platforms=xs.PLATFORMS,
-    packages=find_packages(),
-    namespace_packages=['xstatic', 'xstatic.pkg', ],
+    packages=find_namespace_packages(),
     include_package_data=True,
     zip_safe=False,
-    install_requires=['XStatic-jQuery'],
+    install_requires=['XStatic >= 2.0.0, < 3.0.0', 'XStatic-jQuery'],
 )
